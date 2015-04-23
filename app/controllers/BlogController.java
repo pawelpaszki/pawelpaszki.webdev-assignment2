@@ -40,7 +40,7 @@ public class BlogController extends Controller {
 		Home.index();
 	}
 
-	public static void viewBlog(Long blogid) {
+	public static void viewblog(Long blogid) {
 		User me = Accounts.getLoggedInUser();
 
 		Blog blog = Blog.findById(blogid);
@@ -64,7 +64,7 @@ public class BlogController extends Controller {
 		post.save();
 		current.save();
 		me.save();
-		viewBlog(current.id);
+		viewblog(current.id);
 	}
 
 	public static void deleteComment(Long commentid) {
@@ -89,7 +89,7 @@ public class BlogController extends Controller {
 		comment.delete();
 		current.save();
 		me.save();
-		viewBlog(current.id);
+		viewblog(current.id);
 	}
 
 	public static void viewUserPublicBlogs(Long userid) {

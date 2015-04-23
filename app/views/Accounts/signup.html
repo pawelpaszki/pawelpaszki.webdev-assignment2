@@ -1,0 +1,12 @@
+#{extends 'main.html' /} #{set title:'Signup for Blogger' /}
+
+<nav class="ui inverted large teal main menu">
+  <header class="header item"> Blogger </header>
+  <div class="right menu">
+    <a class="active item" href="/signup"> Signup </a> <a class="item"
+      href="/login"> Login </a>
+  </div>
+</nav>
+<h1 class="ui teal header">Fill in the form to sign up:</h1>
+<br>
+#{signupform route:"/register"/}

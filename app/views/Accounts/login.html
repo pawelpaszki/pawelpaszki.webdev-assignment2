@@ -1,0 +1,13 @@
+#{extends 'main.html' /} #{set title:'Login to Blogger' /}
+
+<nav class="ui inverted large teal main menu">
+  <header class="header item"> Blogger </header>
+  <div class="right menu">
+    <a class="item" href="/signup"> Signup </a> <a class="active item"
+      href="/login"> Login </a>
+  </div>
+</nav>
+
+<h1 class="ui teal header">Log in:</h1>
+<br>
+#{loginform route:"/authenticate"/}

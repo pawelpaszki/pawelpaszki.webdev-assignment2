@@ -1,0 +1,43 @@
+#{extends 'main.html' /} #{set title:'View spam' /} #{mainmenu /}
+
+<h3 class="ui inverted teal block header">${blog.title} Spam</h3>
+<br>
+<section class="ui form grid">
+  #{aboutme firstName:"${me.firstName}", lastName:"${me.lastName}",
+  email:"${me.email}", dateOfBirth:"${me.dateOfBirth}", sex:"${me.sex}",
+  occupation:"${me.occupation}"/}
+  <div class="four wide column">#{verticalmenu id:"spam",
+    newpost:"/dashboard/createpost/${blog.id}",
+    newpage:"/dashboard/createpage/${blog.id}",
+    viewposts:"/dashboard/viewposts/${blog.id}",
+    viewpages:"/dashboard/viewpages/${blog.id}",
+    comments:"/dashboard/viewcomments/${blog.id}",
+    spam:"/dashboard/viewspam/${blog.id}",
+    settings:"/dashboard/settings/${blog.id}",
+    stats:"/dashboard/stats/${blog.id}" /}</div>
+
+  <div class="eight wide column">
+    #{list items:comments, as:'comment'}
+    #{if comment.isSpam}
+    <div id="white" class="content">
+      <div class="header">
+        ${comment.content} <br>by ${comment.commentAuthor}<br>Created
+        at ${comment.getDate()}
+      </div>
+      <div id="white" class="item">
+      <a class="ui button red labeled"
+          href="../spamdeletecomment/${comment.id}"><i
+          class="delete icon"></i> delete</a>
+        <a class="ui button orange"
+           href="../markasnotspam/${comment.id}">not spam </a>
+      </div>
+    </div>
+    <br> 
+    #{/if}
+    #{/list}
+  </div>
+  <div class="four wide column"></div>
+</section>
+<script>
+	$('.ui.dropdown').dropdown();
+</script>

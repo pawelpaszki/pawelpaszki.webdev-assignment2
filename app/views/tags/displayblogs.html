@@ -1,0 +1,10 @@
+<section class="ui stacked segment">
+  <h4 class="ui inverted blue block header">Published Posts</h4>
+  #{list items:user.blogs, as:'blog'}
+    <h5 class="ui inverted green block header"> ${blog.title}</h5>
+    <p> 
+      ${blog.content}:
+    </p>
+    <a href="/blogcontroller/deleteblog/${blog.id}" class="ui button red labeled icon"><i class="icon delete"></i> Delete </a>
+  #{/list}
+</section>

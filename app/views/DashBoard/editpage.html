@@ -1,0 +1,36 @@
+#{extends 'main.html' /} #{set title:'Edit Page' /} #{mainmenu /}
+
+<h3 class="ui inverted teal block header">${blog.title}</h3>
+<br>
+<section class="ui form grid">
+  #{aboutme firstName:"${me.firstName}", lastName:"${me.lastName}",
+  email:"${me.email}", dateOfBirth:"${me.dateOfBirth}", sex:"${me.sex}",
+  occupation:"${me.occupation}"/}
+  <div class="four wide column">#{verticalmenu id:"pages",
+    newpost:"/dashboard/createpost/${blog.id}",
+    newpage:"/dashboard/createpage/${blog.id}",
+    viewposts:"/dashboard/viewposts/${blog.id}",
+    viewpages:"/dashboard/viewpages/${blog.id}",
+    comments:"/dashboard/viewcomments/${blog.id}",
+    spam:"/dashboard/viewspam/${blog.id}",
+    settings:"/dashboard/settings/${blog.id}",
+    stats:"/dashboard/stats/${blog.id}" /}</div>
+  <div class="eight wide column">
+    <h4 class="ui inverted teal block header">update page</h4>
+    <form action="../updatepage/${page.id}" method="POST">
+      <div class="field">
+        <input type="text" name="pageTitle" value="${page.pageTitle}"></input>
+      </div>
+      <div class="field">
+        <textarea type="text" name="postContent"
+          placeholder="${page.pageContent}"></textarea>
+      </div>
+      <button class="ui button fluid teal submit labeled centered icon">
+        <i class="icon edit"></i> update page
+      </button>
+    </form>
+  </div>
+</section>
+<script>
+	$('.ui.dropdown').dropdown();
+</script>

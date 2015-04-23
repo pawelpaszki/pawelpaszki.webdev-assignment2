@@ -1,0 +1,45 @@
+
+User(lisa):
+    firstName: Lisa
+    lastName: Simpson
+    email: lisa@simpson.com
+    password: secret
+    dateOfBirth: 21/03/2005
+    sex: female
+    occupation: not your business
+    
+User(marge):
+    firstName: Marge
+    lastName: Simpson
+    email: marge@simpson.com
+    password: secret
+    dateOfBirth: 05/02/1975
+    sex: female
+    occupation: office worker
+
+User(homer):
+    firstName: Homer
+    lastName: Simpson
+    email: homer@simpson.com
+    password: secret
+    dateOfBirth: 12/04/1974
+    sex: male
+    occupation: remote control manager
+
+User(bart):
+    firstName: Bart
+    lastName: Simpson
+    email: bart@simpson.com
+    password: secret
+    dateOfBirth: 03/08/2004
+    sex: female
+    occupation: boss
+
+User(maggie):
+    firstName: Maggie
+    lastName: Simpson
+    email: maggie@simpson.com
+    password: secret
+    dateOfBirth: 01/01/2013
+    sex: female
+    occupation: yep

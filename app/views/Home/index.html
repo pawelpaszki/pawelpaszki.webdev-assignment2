@@ -1,0 +1,92 @@
+#{extends 'main.html' /} #{set title:'Home' /} #{mainmenu id:"home"/}
+
+<h3 class="ui inverted teal block header">${me.firstName}
+  ${me.lastName}' blogs</h3>
+<section class="ui grid">
+  <div class="row">
+    <div class="six wide column">
+      <div class="ui fluid white floating labeled icon dropdown button">
+        <i class="dropdown icon"></i> <span class="text">New Blog</span>
+        <div class="menu">
+          <div class="input">#{createblog
+            route:"/blogcontroller/newblog"/}</div>
+        </div>
+      </div>
+    </div>
+    <div class="six wide column"></div>
+    <div class="four wide column">
+    </div>
+  </div>
+  <div class="ui segment"></div>
+  #{if me.blogs.size() > 0} #{list items:me.blogs, as:'blog'}
+  <div class="row">
+    <div class="two wide column"></div>
+    <div id="white" class="six wide column">
+      <div class="content">
+        <a class="header" href="/dashboard/stats/${blog.id}">${blog.title}</a><br>
+        #{if blog.posts.size() == 0} <a class="item"
+          href="/dashboard/createpost/${blog.id}"></i>Start Blogging!</a>
+        #{/if} #{else} <a href="/dashboard/viewposts/${blog.id}">${blog.posts.size()}
+          post('s) </a>#{/else}, ${blog.ownViews + blog.othersViews}
+        view('s), Created at ${blog.getDate()}
+      </div>
+    </div>
+    <div class="six wide column">
+      <div id="white" class="item">
+        <a href="/dashboard/createpost/${blog.id}"
+          class="ui button green labeled icon"> <i
+          class="write icon"></i>new post
+        </a>
+        <div class="ui compact menu">
+          <div class="ui simple dropdown item">
+            More...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i
+              class="dropdown icon"></i>
+            <div class="menu">
+              <a class="item" href="/dashboard/createpost/${blog.id}"><i
+                class="write icon"></i>New Post</a> <a class="item"
+                href="/dashboard/createpage/${blog.id}"><i
+                class="write icon"></i>New Page</a> <a class="item"
+                href="/dashboard/viewposts/${blog.id}"><i
+                class="file text icon"></i>Posts</a> <a class="item"
+                href="/dashboard/viewpages/${blog.id}"><i
+                class="file outline icon"></i>Pages</a> <a class="item"
+                href="/dashboard/viewcomments/${blog.id}"><i
+                class="comments icon"></i>Comments</a> <a class="item"
+                href="/dashboard/viewspam/${blog.id}"><i
+                class="warning sign icon"></i>Spam</a> <a class="item"
+                href="/dashboard/settings/${blog.id}"><i
+                class="settings icon"></i>Settings</a> <a class="item"
+                href="/dashboard/stats/${blog.id}"><i
+                class="bar chart icon"></i>Stats</a>
+            </div>
+          </div>
+        </div>
+        <a class="ui blue button"
+          href="blogcontroller/viewblog/${blog.id}"> view blog </a>
+      </div>
+    </div>
+  </div>
+  <div class="one wide column"></div>
+  #{/list} #{/if}
+  <div class="row">
+    <div class="column">
+      <div class="ui fluid white floating labeled icon dropdown button">
+        <i class="dropdown icon"></i> <span class="text">Other
+          Blogs</span>
+        <div class="menu">
+          #{list items:users, as:'user'} #{if !user.equals(me) &&
+          user.blogs.size() != 0 && (user.havePublicBlogs())}
+          <div class="input">
+            <a href="/blogcontroller/viewuserpublicblogs/${user.id}">${user.firstName}
+              public blog('s)</a>
+          </div>
+          #{/if} #{/list}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+	$('.ui.dropdown').dropdown();
+	$('.notification').fadeIn(1500).delay(3000).slideUp(500);
+</script>

@@ -1,0 +1,58 @@
+#{extends 'main.html' /} #{set title:'View public blogs' /} #{mainmenu
+/}
+
+<h3 class="ui inverted teal block header">${user.firstName}
+  ${user.lastName} blogs</h3>
+<br>
+<section class="ui form grid">
+  <div class="right floated left aligned four wide column">
+    <div class="ui segment">#{userinfo
+      firstName:"${user.firstName}", lastName:"${user.lastName}",
+      email:"${user.email}", dateOfBirth:"${user.dateOfBirth}",
+      sex:"${user.sex}", occupation:"${user.occupation}",
+      listStart:"#{list items:blog.posts, as:'post'}"/}</div>
+  </div>
+  <div class="four wide column">
+    <a class="ui red labeled fluid button" href="../../home"><i
+      class="arrow left icon"></i>back to home</a>
+  </div>
+  <div class="eight wide column">
+    #{list items:user.blogs, as:'blog'} #{if
+    user.allBlogsWithAdultContent() && !me.isAdult()}
+    <div class="row">
+      <div class="ui segment">
+        <i class="orange warning sign icon"></i>All ${user.firstName}'s
+        blogs contain adult content and therefore are not visible for
+        you
+      </div>
+    </div>
+    #{/if} #{elseif blog.isPrivate || blog.adultContent &&
+    !me.isAdult()}
+    <div class="ui segment">
+      <i class="orange warning sign icon"></i>This ${user.firstName}'s
+      blog contains adult content or is private and therefore is not
+      visible for you
+    </div>
+    #{/elseif} #{else}
+    <div class="row">
+      <div class="two wide column"></div>
+      <div id="white" class="six wide column">
+        <div class="content">
+          <a class="header"
+            href="/blogcontroller/viewpublicblog/${blog.id}">${blog.title}</a><br>
+          #{if blog.posts.size() == 0} No posts #{/if} #{else}
+          ${blog.posts.size()} posts #{/else}, ${blog.ownViews +
+          blog.othersViews} views, Created at ${blog.getDate()}
+        </div>
+      </div>
+      <div class="six wide column">
+        <div id="white" class="item"></div>
+      </div>
+    </div>
+    <br> #{/else} #{/list}
+  </div>
+  <div class="one wide column"></div>
+</section>
+<script>
+	$('.ui.dropdown').dropdown();
+</script>

@@ -1,0 +1,25 @@
+<div class="ui segment">
+  <div class="ui large vertical text menu">
+    <div class="header item">DashBoard</div>
+    <a id="createpost" class="item" href="${_newpost}"> <i
+      class="write icon"></i> New Post
+    </a> <a id="createpage" class="item" href="${_newpage}"> <i
+      class="write icon"></i> New Page
+    </a> <a id="posts"class="item" href="${_viewposts}"> <i
+      class="file text icon"></i> Posts
+    </a> <a id="pages"class="item" href="${_viewpages}"> <i
+      class="file outline icon"></i> Pages
+    </a> <a id="comments"class="item" href="${_comments}"> <i
+      class="comments icon"></i> Comments
+    </a> <a id="spam"class="item" href="${_spam}"> <i
+      class="warning sign icon"></i> Spam
+    </a> <a id="settings" class="item" href="${_settings}"> <i class="settings icon"></i> Settings
+    </a> <a id="stats" class="item" href="${_stats}"> <i class="bar chart icon"></i> Stats
+    </a>
+  </div>
+</div>
+
+<script>
+	$("#${_id}").addClass("active item");
+</script>
+

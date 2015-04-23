@@ -1,0 +1,69 @@
+#{extends 'main.html' /} #{set title:'User public blog' /} #{mainmenu id:"blog"/}
+
+<h3 class="ui inverted teal block header">${blog.title}</h3>
+<br>
+<section class="ui basic grid">
+  <div class="four wide column">
+    <a class="ui red labeled fluid button" href="/blogcontroller/viewuserpublicblogs/${user.id}"><i class="arrow left icon"></i>back to ${user.firstName}'s list of  blogs</a>
+  </div>
+  <div class="right floated left aligned four wide column">
+  <div class="ui segment">
+  #{userinfo firstName:"${user.firstName}", lastName:"${user.lastName}",
+  email:"${user.email}", dateOfBirth:"${user.dateOfBirth}", sex:"${user.sex}",
+  occupation:"${user.occupation}", listStart:"#{list items:blog.posts, as:'post'}"/}
+  <h3 class="ui blue dividing header">Pages:</h3>
+    #{list items:blog.pages, as:'page'}
+      <div class="item"><a href="../viewuserpage/${page.id}">${page.pageTitle}</a></div>
+      #{/list}
+  </div>
+  </div>
+  <div class="eight wide column">
+    <div class="ui segment">
+      #{if blog.posts.size() == 0 && blog.pages.size() == 0}
+      No posts or pages has been added to this blog yet
+      #{/if}
+      #{list items:blog.posts, as:'post'}
+      <div class="item">
+      <h2 class="ui blue header">${post.postTitle}</h2>
+        ${post.postContent}<br> <br> Posted by ${post.author}
+        at ${post.postPostedAt}
+        <div class="ui minimal comments">
+          <h3 class="ui dividing header">Comments</h3>
+          <div class="item">
+            #{list items:post.comments, as:'comment'}
+            #{if !comment.isSpam}
+            <div class="comment">
+              <div class="content">
+                <a class="author">${comment.commentAuthor} </a>
+                <div class="metadata">
+                  <span class="date">${comment.getDate()} </span>
+                </div>
+                <div class="text">
+                  ${comment.content} 
+                </div>
+              </div>
+              #{/if}
+              #{/list}
+            </div>
+          </div>
+          #{if !(blog.otherCommentsNotAllowed)}
+          <h4 id="narrowTextarea" class="ui header">Post a Comment</h4>
+          <form action="../postcommentpublic/${post.id}" method="POST">
+            <textarea id="narrowTextarea" name="content"
+              placeholder="comment"></textarea>
+            <button id="narrowTextarea"
+              class="ui button fluid green submit labeled centered icon">
+              <i class="icon edit"></i> Post a comment
+            </button>
+          </form>
+          #{/if}
+        </div>
+      </div>
+      #{/list}
+    </div>
+  </div>
+</section>
+
+<script>
+	$('.ui.dropdown').dropdown();
+</script>

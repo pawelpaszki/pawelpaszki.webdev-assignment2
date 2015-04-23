@@ -1,0 +1,14 @@
+<section class="ui stacked segment">
+  <h4 class="ui inverted red block header"> Status</h4>
+  <div class="ui message">
+    <p> ${_status} </p>
+  </div>
+   <section class="ui form segment">
+    <form action="${_route}" method="POST">
+      <div class="field">
+        <textarea name="statusText"></textarea>
+      </div>
+      <button class="ui button teal submit labeled icon"><i class="icon edit"></i> Update </button>
+    </form>
+  </section>
+</section>  

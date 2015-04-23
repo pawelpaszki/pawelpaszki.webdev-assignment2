@@ -1,0 +1,55 @@
+#{extends 'main.html' /} #{set title:'View page' /} #{mainmenu
+/}
+
+<h3 class="ui inverted teal block header">${userBlog.title} by ${user.firstName}
+  ${user.lastName} </h3>
+<br>
+<section class="ui form grid">
+  <div class="right floated left aligned four wide column">
+    <div class="ui segment">#{userinfo
+      firstName:"${user.firstName}", lastName:"${user.lastName}",
+      email:"${user.email}", dateOfBirth:"${user.dateOfBirth}",
+      sex:"${user.sex}", occupation:"${user.occupation}",
+      listStart:"#{list items:blog.posts, as:'post'}"/}</div>
+  </div>
+  <div class="four wide column">
+    <a class="ui red labeled fluid button" href="../viewpublicblog/${blog.id}"><i
+      class="arrow left icon"></i>back to blog</a>
+  </div>
+  <div class="eight wide column">
+   <h3 id="white" class="ui header">${page.pageTitle}</h3>
+    <br>
+    <p id="white">${page.pageContent }</p>
+    <div id="white" class="ui minimal comments">
+      <h3 class="ui dividing header">Comments</h3>
+      <div class="item">
+        #{list items:page.comments, as:'comment'}
+        <div class="comment">
+          <div class="content">
+            <a class="author">${comment.commentAuthor} </a>
+            <div class="metadata">
+              <span class="date">${comment.getDate()} </span>
+            </div>
+            <div class="text">
+              ${comment.content} 
+            </div>
+          </div>
+          #{/list}
+        </div>
+      </div>
+      <h4 id="someheader" class="ui header">Post a Comment</h4>
+      <form action="../postcommentpublicpage/${page.id}" method="POST">
+        <textarea id="narrowTextarea" name="content"
+          placeholder="comment"></textarea>
+        <button id="narrowTextarea"
+          class="ui button fluid green submit labeled centered icon">
+          <i class="icon edit"></i> Post a comment
+        </button>
+      </form>
+    </div>
+  </div>
+  <div class="one wide column"></div>
+</section>
+<script>
+	$('.ui.dropdown').dropdown();
+</script>

@@ -1,0 +1,54 @@
+<section class="ui form grid">
+  <div class="sixteen wide column">
+    <form action="${_route}" method="POST">
+      <div class="four fields">
+        <div class="field">
+          <div class="ui small teal header">First Name</div>
+          <input placeholder="First Name" type="text" name="firstName"
+            required="true" pattern=".{3,}" required
+            title="minimum 3 characters">
+        </div>
+        <div class="field">
+          <div class="ui small teal header">Last Name</div>
+          <input placeholder="Last Name" type="text" name="lastName"
+            required="true" pattern=".{2,}" required
+            title="minimum 2 characters">
+        </div>
+        <div class="field">
+          <div class="ui small teal header">Email</div>
+          <input placeholder="email" type="email" name="email"
+            required="true" required
+            title="valid email address required">
+        </div>
+        <div class="field">
+          <div class="ui small teal header">Password</div>
+          <input type="password" name="password" required="true"
+            pattern=".{6,12}" required title="6 to 12 characters">
+        </div>
+      </div>
+      <div class="four fields">
+        <div class="field">
+          <div class="ui small teal header">Date of Birth</div>
+          <input placeholder="dd/mm/yyyy" type="text" name="dateOfBirth"
+            required="true" pattern="\d{1,2}/\d{1,2}/\d{4}" required
+            title="dd/mm/yyyy">
+        </div>
+        <div class="field">
+          <div class="ui small teal header">Occupation</div>
+          <input placeholder="occupation" type="text" name="occupation"
+            required="true">
+        </div>
+        <div class="field">
+          <div class="ui small teal header">Sex</div>
+          <div class="ui small teal header">
+            <input type="radio" name="sex" value="female">female
+            &nbsp; &nbsp; <input type="radio" name="sex" value="male"
+              checked>male
+          </div>
+        </div>
+      </div>
+      <br>
+      <button class="ui large blue submit button">Sign up</button>
+    </form>
+  </div>
+</section>

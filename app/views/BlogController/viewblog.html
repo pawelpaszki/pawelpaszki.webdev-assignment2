@@ -1,0 +1,70 @@
+#{extends 'main.html' /} #{set title:'Blog' /} #{mainmenu id:"blog"/}
+
+<h3 class="ui inverted teal block header">${blog.title}</h3>
+<br>
+<section id="notification"class="ui basic grid">
+  <div class="four wide column">
+    <div class="row">
+      <input type="button"
+        class="ui fluid red floating labeled icon dropdown button"
+        value="<< Back" onclick="window.history.back()" />
+    </div>
+    <div class="notification">
+      <i class="small warning sign icon"></i>${blog.title}'s total
+      views: ${blog.othersViews + blog.ownViews}
+    </div>
+  </div>
+  #{aboutme firstName:"${me.firstName}", lastName:"${me.lastName}",
+  email:"${me.email}", dateOfBirth:"${me.dateOfBirth}", sex:"${me.sex}",
+  occupation:"${me.occupation}"/}
+  <div class="eight wide column">
+    <div id="example" class="ui segment">
+      #{if blog.posts.size() == 0} <i class="orange warning sign icon"></i>There
+      are no posts yet. Click <a href="/dashboard/createpost/${blog.id}">here</a>
+      to start blogging! #{/if}
+      <div class="item">
+        #{list items:blog.posts, as:'post'}
+        <h2 class="ui blue header">${post.postTitle}</h2>
+        ${post.postContent}<br> <br> Posted by ${post.author}
+        at ${post.postPostedAt}
+        <div class="ui minimal comments">
+          <h3 class="ui dividing header">Comments</h3>
+          <div class="item">
+            #{list items:post.comments, as:'comment'} #{if
+            !comment.isSpam}
+            <div class="comment">
+              <div class="content">
+                <a class="author">${comment.commentAuthor} </a>
+                <div class="metadata">
+                  <span class="date">${comment.getDate()} </span>
+                </div>
+                <div class="text">
+                  ${comment.content} <a
+                    href="../deletecomment/${comment.id}"><i
+                    class="red delete icon"></i></a>
+                </div>
+              </div>
+              #{/if} #{/list}
+            </div>
+          </div>
+          <h4 id="narrowTextarea" class="ui header">Post a Comment</h4>
+          <form action="../postcomment/${post.id}" method="POST">
+            <textarea id="narrowTextarea" name="content"
+              placeholder="comment"></textarea>
+            <button id="narrowTextarea"
+              class="ui button fluid green submit labeled centered icon">
+              <i class="icon edit"></i> Post a comment
+            </button>
+          </form>
+          <h1 class="ui blue dividing header"></h1>
+          #{/list}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+	$('.ui.dropdown').dropdown();
+	$('.notification').delay(3000).hide(3000);
+	$('#example').hide().slideToggle(3000);
+</script>

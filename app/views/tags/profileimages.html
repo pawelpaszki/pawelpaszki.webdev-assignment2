@@ -1,0 +1,42 @@
+<section class="ui stacked segment">
+  <table class="ui table segment">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Nationality</th>
+        <th>Age</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>${_email}</td>
+        <td>${_nationality}</td>
+        <td>${_age}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="ui medium image">
+    <label class="ui ribbon label">Profile Image</label>
+    <img src="src_1">
+  </div>  
+  <section class="ui raised form segment">
+    <form action="${_route1}" method="post" enctype="multipart/form-data">     
+      <div class="ui field">
+        <input type="file" name="picture">  </input> 
+     </div>     
+     <button class="ui blue submit button"> Upload</button>       
+    </form>        
+  </section>
+  <div class="ui medium image">
+    <label class="ui ribbon label">Thumbnail Image</label>
+    <img src="src_2">
+  </div>
+  <section class="ui raised form segment">
+    <form action="${_route1}" method="post" enctype="multipart/form-data">     
+      <div class="ui field">
+        <input type="file" name="picture">  </input> 
+     </div>     
+     <button class="ui blue submit button"> Upload</button>       
+    </form>        
+  </section>      
+</section>  

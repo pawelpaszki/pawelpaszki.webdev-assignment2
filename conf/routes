@@ -1,0 +1,83 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Landing page
+GET    /                                        Accounts.index
+
+# Accounts
+
+GET    /signup                                  Accounts.signup
+GET    /login                                   Accounts.login
+GET    /logout                                  Accounts.logout
+POST   /authenticate                            Accounts.authenticate
+POST   /register                                Accounts.register
+
+# Home page
+GET     /home                                   Home.index
+GET     /demo                                   Home.demo
+
+# DashBoard
+GET    /dashboard/settings/{blogid}			    DashBoard.settings
+GET    /dashboard/stats/{blogid}				DashBoard.stats
+GET    /dashboard/createpost/{blogid}			DashBoard.createpost
+POST   /dashboard/newpost/{blogid}				DashBoard.newpost
+GET    /dashboard/viewposts/{blogid}			DashBoard.viewposts
+GET    /dashboard/deletepost/{postid}			DashBoard.deletepost
+GET    /dashboard/viewpost/{postid}				DashBoard.viewpost
+GET    /dashboard/editpost/{postid}				DashBoard.editpost
+POST   /dashboard/updatePost/{postid}			DashBoard.updatepost
+POST   /dashboard/postcomment/{postid}			DashBoard.postcomment
+GET    /dashboard/deletecomment/{commentid} 	DashBoard.deletecomment
+GET    /dashboard/viewcomments/{blogid} 	    DashBoard.viewcomments
+GET    /dashboard/viewspam/{blogid} 	    	DashBoard.viewspam
+GET    /dashboard/markasspam/{commentid}    	DashBoard.markasspam
+GET    /dashboard/markasnotspam/{commentid}     DashBoard.markasnotspam
+GET    /dashboard/commentsdeletecomment/{commentid} 	DashBoard.commentsdeletecomment
+GET    /dashboard/spamdeletecomment/{commentid} 	DashBoard.spamdeletecomment
+POST   /dashboard/changeblogtitle/{blogid}				DashBoard.changeblogtitle
+
+GET    /dashboard/createpage/{blogid}			DashBoard.createpage
+POST   /dashboard/newpage/{blogid}				DashBoard.newpage
+GET    /dashboard/viewpages/{blogid}			DashBoard.viewpages
+GET    /dashboard/deletepage/{pageid}			DashBoard.deletepage
+GET    /dashboard/viewpage/{pageid}				DashBoard.viewpage
+GET    /dashboard/editpage/{pageid}				DashBoard.editpage
+POST   /dashboard/updatepage/{pageid}			DashBoard.updatepage
+POST   /dashboard/postcommenttopage/{pageid}	DashBoard.postcommenttopage
+GET    /dashboard/deletepagecomment/{commentid} DashBoard.deletepagecomment
+GET    /dashboard/makeprivate/{blogid}			DashBoard.makeprivate
+GET    /dashboard/makepublic/{blogid}			DashBoard.makepublic
+GET    /dashboard/allowcomments/{blogid}		DashBoard.allowcomments
+GET    /dashboard/dontallowcomments/{blogid}	DashBoard.dontallowcomments
+GET    /dashboard/notadultcontent/{blogid}		DashBoard.notadultcontent
+GET    /dashboard/isadultcontent/{blogid}		DashBoard.isadultcontent
+
+# Edit Details page
+GET    /editprofile                             EditProfile.index
+POST   /editprofile/change                      EditProfile.change
+
+# Blog
+GET   /blogcontroller                           		BlogController.index
+POST  /blogcontroller/newblog                   		BlogController.newblog
+GET   /blogcontroller/deleteblog/{blogid}       		BlogController.deleteblog
+GET	  /blogcontroller/viewblog/{blogid}					BlogController.viewblog
+POST  /blogcontroller/addpost/{blogid}					BlogController.addpost
+POST  /blogcontroller/postcomment/{postid}				BlogController.postcomment
+GET   /blogcontroller/deletecomment/{commentid} 		BlogController.deletecomment
+GET   /blogcontroller/viewuserpublicblogs/{userid} 		BlogController.viewuserpublicblogs
+GET	  /blogcontroller/viewpublicblog/{blogid}			BlogController.viewpublicblog
+POST  /blogcontroller/postcommentpublic/{postid}		BlogController.postcommentpublic
+GET   /blogcontroller/follow/{blogid}					BlogController.follow
+GET   /blogcontroller/unfollow/{blogid}					BlogController.unfollow
+GET   /blogcontroller/viewuserpage/{pageid}				BlogController.viewuserpage
+POST   /blogcontroller/postcommentpublicpage/{pageid}	BlogController.postcommentpublicpage
+
+# Ignore favicon requests
+GET     /favicon.ico                            404
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/                                staticDir:public
+
+# Catch all
+*       /{controller}/{action}                  {controller}.{action}

@@ -26,7 +26,7 @@ public class DashBoard extends Controller {
 		render(me, blog);
 	}
 
-	public static void newPost(Long blogid, String postTitle, String postContent) {
+	public static void newpost(Long blogid, String postTitle, String postContent) {
 		User me = Accounts.getLoggedInUser();
 		Blog blog = Blog.findById(blogid);
 		Post post = new Post(me, postTitle, postContent);
@@ -35,22 +35,22 @@ public class DashBoard extends Controller {
 		blog.save();
 		me.save();
 		Logger.info("post: " + post + " size:" + blog.posts.size());
-		viewPosts(blogid);
+		viewposts(blogid);
 	}
 
-	public static void createPost(Long blogid) {
+	public static void createpost(Long blogid) {
 		User me = Accounts.getLoggedInUser();
 		Blog blog = Blog.findById(blogid);
 		render(me, blog);
 	}
 
-	public static void viewPosts(Long blogid) {
+	public static void viewposts(Long blogid) {
 		User me = Accounts.getLoggedInUser();
 		Blog blog = Blog.findById(blogid);
 		render(me, blog);
 	}
 
-	public static void viewPost(Long postid) {
+	public static void viewpost(Long postid) {
 		User me = Accounts.getLoggedInUser();
 		Post post = Post.findById(postid);
 		Blog current = null;
@@ -65,7 +65,7 @@ public class DashBoard extends Controller {
 		render(me, blog, post);
 	}
 
-	public static void deletePost(Long postid) {
+	public static void deletepost(Long postid) {
 		User me = Accounts.getLoggedInUser();
 		Post post = Post.findById(postid);
 		Blog current = null;
@@ -79,10 +79,10 @@ public class DashBoard extends Controller {
 		post.delete();
 		me.save();
 		Blog blog = current;
-		viewPosts(blog.id);
+		viewposts(blog.id);
 	}
 
-	public static void editPost(Long postid) {
+	public static void editpost(Long postid) {
 		User me = Accounts.getLoggedInUser();
 		Post post = Post.findById(postid);
 		Blog current = null;
@@ -95,7 +95,7 @@ public class DashBoard extends Controller {
 		render(me, blog, post);
 	}
 
-	public static void updatePost(Long postid, String postTitle,
+	public static void updatepost(Long postid, String postTitle,
 			String postContent) {
 		User me = Accounts.getLoggedInUser();
 		Post post = Post.findById(postid);
@@ -111,10 +111,10 @@ public class DashBoard extends Controller {
 		current.save();
 		me.save();
 		Blog blog = current;
-		viewPosts(blog.id);
+		viewposts(blog.id);
 	}
 
-	public static void newPage(Long blogid, String pageTitle, String pageContent) {
+	public static void newpage(Long blogid, String pageTitle, String pageContent) {
 		User me = Accounts.getLoggedInUser();
 		Blog blog = Blog.findById(blogid);
 		Page page = new Page(me, pageTitle, pageContent);
@@ -123,7 +123,7 @@ public class DashBoard extends Controller {
 		blog.save();
 		me.save();
 		Logger.info("post: " + page + " size:" + blog.pages.size());
-		viewPages(blogid);
+		viewpages(blogid);
 	}
 
 	public static void createPage(Long blogid) {
@@ -132,13 +132,13 @@ public class DashBoard extends Controller {
 		render(me, blog);
 	}
 
-	public static void viewPages(Long blogid) {
+	public static void viewpages(Long blogid) {
 		User me = Accounts.getLoggedInUser();
 		Blog blog = Blog.findById(blogid);
 		render(me, blog);
 	}
 
-	public static void viewPage(Long pageid) {
+	public static void viewpage(Long pageid) {
 		User me = Accounts.getLoggedInUser();
 		Page page = Page.findById(pageid);
 		Blog current = null;
@@ -153,7 +153,7 @@ public class DashBoard extends Controller {
 		render(me, blog, page);
 	}
 
-	public static void deletePage(Long pageid) {
+	public static void deletepage(Long pageid) {
 		User me = Accounts.getLoggedInUser();
 		Page page = Page.findById(pageid);
 		Blog current = null;
@@ -166,10 +166,10 @@ public class DashBoard extends Controller {
 		current.save();
 		page.delete();
 		me.save();
-		viewPages(current.id);
+		viewpages(current.id);
 	}
 
-	public static void editPage(Long pageid) {
+	public static void editpage(Long pageid) {
 		User me = Accounts.getLoggedInUser();
 		Page page = Page.findById(pageid);
 		Blog current = null;
@@ -182,7 +182,7 @@ public class DashBoard extends Controller {
 		render(me, blog, page);
 	}
 
-	public static void updatePage(Long pageid, String pageTitle,
+	public static void updatepage(Long pageid, String pageTitle,
 			String pageContent) {
 		User me = Accounts.getLoggedInUser();
 		Page page = Page.findById(pageid);
@@ -198,10 +198,10 @@ public class DashBoard extends Controller {
 		current.save();
 		me.save();
 		Blog blog = current;
-		viewPages(blog.id);
+		viewpages(blog.id);
 	}
 
-	public static void postComment(Long postid, String content) {
+	public static void postcomment(Long postid, String content) {
 		User me = Accounts.getLoggedInUser();
 		Post post = Post.findById(postid);
 		Blog current = null;
@@ -216,10 +216,10 @@ public class DashBoard extends Controller {
 		post.save();
 		current.save();
 		me.save();
-		viewPost(post.id);
+		viewpost(post.id);
 	}
 
-	public static void deleteComment(Long commentid) {
+	public static void deletecomment(Long commentid) {
 		User me = Accounts.getLoggedInUser();
 		Comment comment = Comment.findById(commentid);
 		Post thisPost = null;
@@ -242,10 +242,10 @@ public class DashBoard extends Controller {
 
 		current.save();
 		me.save();
-		viewPost(thisPost.id);
+		viewpost(thisPost.id);
 	}
 
-	public static void commentsDeleteComment(Long commentid) {
+	public static void commentsdeletecomment(Long commentid) {
 		User me = Accounts.getLoggedInUser();
 		Comment comment = Comment.findById(commentid);
 		Post thisPost = null;
@@ -268,10 +268,10 @@ public class DashBoard extends Controller {
 
 		current.save();
 		me.save();
-		viewComments(current.id);
+		viewcomments(current.id);
 	}
 
-	public static void spamDeleteComment(Long commentid) {
+	public static void spamdeletecomment(Long commentid) {
 		User me = Accounts.getLoggedInUser();
 		Comment comment = Comment.findById(commentid);
 		Post thisPost = null;
@@ -294,10 +294,10 @@ public class DashBoard extends Controller {
 
 		current.save();
 		me.save();
-		viewSpam(current.id);
+		viewspam(current.id);
 	}
 
-	public static void postCommentToPage(Long pageid, String content) {
+	public static void postcommenttopage(Long pageid, String content) {
 		User me = Accounts.getLoggedInUser();
 		Page page = Page.findById(pageid);
 		Blog current = null;
@@ -312,10 +312,10 @@ public class DashBoard extends Controller {
 		page.save();
 		current.save();
 		me.save();
-		viewPage(page.id);
+		viewpage(page.id);
 	}
 
-	public static void deletePageComment(Long commentid) {
+	public static void deletepagecomment(Long commentid) {
 		User me = Accounts.getLoggedInUser();
 		Comment comment = Comment.findById(commentid);
 		Page thisPage = null;
@@ -337,10 +337,10 @@ public class DashBoard extends Controller {
 
 		current.save();
 		me.save();
-		viewPage(thisPage.id);
+		viewpage(thisPage.id);
 	}
 
-	public static void markAsNotSpam(Long commentid) {
+	public static void markasnotspam(Long commentid) {
 		User me = Accounts.getLoggedInUser();
 		Comment comment = Comment.findById(commentid);
 		comment.isSpam = false;
@@ -377,10 +377,10 @@ public class DashBoard extends Controller {
 
 		current.save();
 		me.save();
-		viewSpam(current.id);
+		viewspam(current.id);
 	}
 
-	public static void markAsSpam(Long commentid) {
+	public static void markasspam(Long commentid) {
 		User me = Accounts.getLoggedInUser();
 		Comment comment = Comment.findById(commentid);
 		comment.isSpam = true;
@@ -418,10 +418,10 @@ public class DashBoard extends Controller {
 
 		current.save();
 		me.save();
-		viewComments(current.id);
+		viewcomments(current.id);
 	}
 
-	public static void viewComments(Long blogid) {
+	public static void viewcomments(Long blogid) {
 		User me = Accounts.getLoggedInUser();
 		Blog blog = Blog.findById(blogid);
 		ArrayList<Comment> comments = new ArrayList<Comment>();
@@ -443,7 +443,7 @@ public class DashBoard extends Controller {
 		render(me, blog, comments, posts, pages);
 	}
 
-	public static void viewSpam(Long blogid) {
+	public static void viewspam(Long blogid) {
 		User me = Accounts.getLoggedInUser();
 		Blog blog = Blog.findById(blogid);
 		ArrayList<Comment> comments = new ArrayList<Comment>();
@@ -469,7 +469,7 @@ public class DashBoard extends Controller {
 		render(me, blog, comments, posts, pages);
 	}
 
-	public static void makePrivate(Long blogid) {
+	public static void makeprivate(Long blogid) {
 		User me = Accounts.getLoggedInUser();
 		Blog blog = Blog.findById(blogid);
 		blog.isPrivate = true;
@@ -479,7 +479,7 @@ public class DashBoard extends Controller {
 		settings(blogid);
 	}
 
-	public static void makePublic(Long blogid) {
+	public static void makepublic(Long blogid) {
 		User me = Accounts.getLoggedInUser();
 		Blog blog = Blog.findById(blogid);
 		blog.isPrivate = false;
@@ -489,7 +489,7 @@ public class DashBoard extends Controller {
 		settings(blogid);
 	}
 
-	public static void dontAllowComments(Long blogid) {
+	public static void dontallowcomments(Long blogid) {
 		User me = Accounts.getLoggedInUser();
 		Blog blog = Blog.findById(blogid);
 		blog.otherCommentsNotAllowed = true;
@@ -500,7 +500,7 @@ public class DashBoard extends Controller {
 		settings(blogid);
 	}
 
-	public static void allowComments(Long blogid) {
+	public static void allowcomments(Long blogid) {
 		User me = Accounts.getLoggedInUser();
 		Blog blog = Blog.findById(blogid);
 		blog.otherCommentsNotAllowed = false;
@@ -511,7 +511,7 @@ public class DashBoard extends Controller {
 		settings(blogid);
 	}
 
-	public static void isAdultContent(Long blogid) {
+	public static void isadultcontent(Long blogid) {
 		User me = Accounts.getLoggedInUser();
 		Blog blog = Blog.findById(blogid);
 		blog.adultContent = true;
@@ -521,7 +521,7 @@ public class DashBoard extends Controller {
 		settings(blogid);
 	}
 
-	public static void notAdultContent(Long blogid) {
+	public static void notadultcontent(Long blogid) {
 		User me = Accounts.getLoggedInUser();
 		Blog blog = Blog.findById(blogid);
 		blog.adultContent = false;
@@ -531,7 +531,7 @@ public class DashBoard extends Controller {
 		settings(blogid);
 	}
 
-	public static void changeBlogTitle(Long blogid, String newTitle) {
+	public static void changeblogtitle(Long blogid, String newTitle) {
 		User me = Accounts.getLoggedInUser();
 		Blog blog = Blog.findById(blogid);
 		blog.title = newTitle;

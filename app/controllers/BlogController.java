@@ -17,7 +17,7 @@ public class BlogController extends Controller {
 		render(user);
 	}
 
-	public static void newBlog(String title) {
+	public static void newblog(String title) {
 		User user = Accounts.getLoggedInUser();
 
 		Blog blog = new Blog(user, title);
@@ -29,7 +29,7 @@ public class BlogController extends Controller {
 		Home.index();
 	}
 
-	public static void deleteBlog(Long blogid) {
+	public static void deleteblog(Long blogid) {
 		User me = Accounts.getLoggedInUser();
 		Blog blog = Blog.findById(blogid);
 		Logger.info("Request to delete title:" + blog.title);
@@ -49,7 +49,7 @@ public class BlogController extends Controller {
 		render(me, blog);
 	}
 
-	public static void postComment(Long postid, String content) {
+	public static void postcomment(Long postid, String content) {
 		User me = Accounts.getLoggedInUser();
 		Post post = Post.findById(postid);
 		Blog current = null;
@@ -67,7 +67,7 @@ public class BlogController extends Controller {
 		viewblog(current.id);
 	}
 
-	public static void deleteComment(Long commentid) {
+	public static void deletecomment(Long commentid) {
 		User me = Accounts.getLoggedInUser();
 		Comment comment = Comment.findById(commentid);
 		Post thisPost = null;
@@ -92,13 +92,13 @@ public class BlogController extends Controller {
 		viewblog(current.id);
 	}
 
-	public static void viewUserPublicBlogs(Long userid) {
+	public static void viewuserpublicblogs(Long userid) {
 		User me = Accounts.getLoggedInUser();
 		User user = User.findById(userid);
 		render(me, user);
 	}
 
-	public static void viewPublicBlog(Long blogid) {
+	public static void viewpublicblog(Long blogid) {
 		User me = Accounts.getLoggedInUser();
 
 		Blog blog = Blog.findById(blogid);
@@ -114,7 +114,7 @@ public class BlogController extends Controller {
 		render(me, user, blog);
 	}
 
-	public static void viewUserPage(Long pageid) {
+	public static void viewuserpage(Long pageid) {
 		User me = Accounts.getLoggedInUser();
 		Page page = Page.findById(pageid);
 		List<User> users = User.findAll();
@@ -131,7 +131,7 @@ public class BlogController extends Controller {
 		render(me, user, userBlog, page);
 	}
 
-	public static void postCommentPublic(Long postid, String content) {
+	public static void postcommentpublic(Long postid, String content) {
 		User me = Accounts.getLoggedInUser();
 		Post post = Post.findById(postid);
 		Blog current = null;
@@ -148,10 +148,10 @@ public class BlogController extends Controller {
 		post.save();
 		current.save();
 		me.save();
-		viewPublicBlog(current.id);
+		viewpublicblog(current.id);
 	}
 	
-	public static void postCommentPublicPage(Long pageid, String content) {
+	public static void postcommentpublicpage(Long pageid, String content) {
 		User me = Accounts.getLoggedInUser();
 		Page page = Page.findById(pageid);
 		Blog current = null;
@@ -170,7 +170,7 @@ public class BlogController extends Controller {
 		page.save();
 		current.save();
 		blogOwner.save();
-		viewUserPage(page.id);
+		viewuserpage(page.id);
 	}
 
 }

@@ -126,7 +126,7 @@ public class DashBoard extends Controller {
 		viewpages(blogid);
 	}
 
-	public static void createPage(Long blogid) {
+	public static void createpage(Long blogid) {
 		User me = Accounts.getLoggedInUser();
 		Blog blog = Blog.findById(blogid);
 		render(me, blog);
@@ -223,11 +223,23 @@ public class DashBoard extends Controller {
 		User me = Accounts.getLoggedInUser();
 		Comment comment = Comment.findById(commentid);
 		Post thisPost = null;
+		Page thisPage = null;
 		Blog current = null;
 		for (Blog blog : me.blogs) {
 			for (Post post : blog.posts) {
 				if (post.comments.contains(comment)) {
 					thisPost = post;
+					thisPost.comments.remove(comment);
+					thisPost.save();
+				}
+			}
+		}
+		for (Blog blog : me.blogs) {
+			for (Page page : blog.pages) {
+				if (page.comments.contains(comment)) {
+					thisPage = page;
+					thisPage.comments.remove(comment);
+					thisPage.save();
 				}
 			}
 		}
@@ -236,11 +248,14 @@ public class DashBoard extends Controller {
 				current = blog;
 			}
 		}
-		thisPost.comments.remove(comment);
-
-		thisPost.save();
+		for (Blog blog : me.blogs) {
+			if (blog.pages.contains(thisPage)) {
+				current = blog;
+			}
+		}
 
 		current.save();
+
 		me.save();
 		viewpost(thisPost.id);
 	}
@@ -249,11 +264,23 @@ public class DashBoard extends Controller {
 		User me = Accounts.getLoggedInUser();
 		Comment comment = Comment.findById(commentid);
 		Post thisPost = null;
+		Page thisPage = null;
 		Blog current = null;
 		for (Blog blog : me.blogs) {
 			for (Post post : blog.posts) {
 				if (post.comments.contains(comment)) {
 					thisPost = post;
+					thisPost.comments.remove(comment);
+					thisPost.save();
+				}
+			}
+		}
+		for (Blog blog : me.blogs) {
+			for (Page page : blog.pages) {
+				if (page.comments.contains(comment)) {
+					thisPage = page;
+					thisPage.comments.remove(comment);
+					thisPage.save();
 				}
 			}
 		}
@@ -262,9 +289,11 @@ public class DashBoard extends Controller {
 				current = blog;
 			}
 		}
-		thisPost.comments.remove(comment);
-
-		thisPost.save();
+		for (Blog blog : me.blogs) {
+			if (blog.pages.contains(thisPage)) {
+				current = blog;
+			}
+		}
 
 		current.save();
 		me.save();
@@ -275,11 +304,23 @@ public class DashBoard extends Controller {
 		User me = Accounts.getLoggedInUser();
 		Comment comment = Comment.findById(commentid);
 		Post thisPost = null;
+		Page thisPage = null;
 		Blog current = null;
 		for (Blog blog : me.blogs) {
 			for (Post post : blog.posts) {
 				if (post.comments.contains(comment)) {
 					thisPost = post;
+					thisPost.comments.remove(comment);
+					thisPost.save();
+				}
+			}
+		}
+		for (Blog blog : me.blogs) {
+			for (Page page : blog.pages) {
+				if (page.comments.contains(comment)) {
+					thisPage = page;
+					thisPage.comments.remove(comment);
+					thisPage.save();
 				}
 			}
 		}
@@ -288,9 +329,11 @@ public class DashBoard extends Controller {
 				current = blog;
 			}
 		}
-		thisPost.comments.remove(comment);
-
-		thisPost.save();
+		for (Blog blog : me.blogs) {
+			if (blog.pages.contains(thisPage)) {
+				current = blog;
+			}
+		}
 
 		current.save();
 		me.save();

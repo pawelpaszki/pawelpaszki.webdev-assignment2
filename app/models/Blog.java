@@ -52,7 +52,7 @@ public class Blog extends Model {
 	    return date;
 	}
 	public int commentsCount() {
-		ArrayList<Comment> comments = new ArrayList<>();
+		ArrayList<Comment> comments = new ArrayList<Comment>();
 		for (Post post : posts) {
 			for (Comment comment : post.comments) {
 				comments.add(comment);
@@ -66,7 +66,7 @@ public class Blog extends Model {
 		return comments.size();
 	}
 	public int spamCount() {
-		ArrayList<Comment> comments = new ArrayList<>();
+		ArrayList<Comment> comments = new ArrayList<Comment>();
 		for (Post post: posts) {
 			for (Comment comment: post.comments) {
 				if (comment.isSpam) {

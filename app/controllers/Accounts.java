@@ -65,8 +65,4 @@ public class Accounts extends Controller {
 			login();
 		}
 	}
-	// to do
-	public static void deleteAccount() {
-		
-	}
 }
